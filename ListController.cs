@@ -26,6 +26,7 @@ namespace Tasks.Controllers
             this.mapper = mapper;
             this.gene = generator;
         }
+        //to get all todo lists
         [HttpGet]
         public async Task<ActionResult<TodoModel[]>> Get()
         {
@@ -41,6 +42,7 @@ namespace Tasks.Controllers
                 return this.StatusCode(StatusCodes.Status500InternalServerError, dn.Message);
             }
         }
+        //to get individual list
         [HttpGet("{name:int}")]
         public async Task<ActionResult<TodoModel>> Get(int name)
         {
@@ -56,6 +58,7 @@ namespace Tasks.Controllers
                 return this.StatusCode(StatusCodes.Status500InternalServerError, dn.Message);
             }
         }
+        //search by date
 
         [HttpGet("search")]
         public async Task<ActionResult<TodoModel[]>> SearchByDate(DateTime time)
@@ -73,7 +76,7 @@ namespace Tasks.Controllers
             }
         }
 
-
+//to post a to do
         public async Task<ActionResult<TodoModel>> Post(TodoModel model) {
             try
             {
@@ -111,6 +114,7 @@ namespace Tasks.Controllers
 
 
         }
+        // to update
         [HttpPut("{number:int}")]
         public async Task<ActionResult<TodoModel>> Put(TodoModel model, int number)
         {
@@ -132,7 +136,7 @@ namespace Tasks.Controllers
             }
             return BadRequest("The todo list isn't updated");
         }
-
+//to delete
         [HttpDelete("{number:int}")]
          public async Task<IActionResult> Delete(int number)
         {
